@@ -9,6 +9,13 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    const countDownDate = new Date('Mar 16, 2022 16:37:52').getTime();
+    setInterval(() => {
+      const timeNow = new Date().getTime();
+      this.setState({ time: (countDownDate - timeNow) });
+    }, 1000);
+  }
 
   render() {
     const { time } = this.state;
