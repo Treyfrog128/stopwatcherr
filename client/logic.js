@@ -1,6 +1,6 @@
-const countDownDate = new Date('Jul 25, 2021 16:37:52')
-console.log(countDownDate)
+const countDownDate = new Date('Mar 16, 2022 16:37:52').getTime();
 
-const myfunc = setInterval(function() {
-  
+setInterval(() => {
+  const timeNow = new Date().getTime();
+  console.log(countDownDate - timeNow)
 }, 1000)
