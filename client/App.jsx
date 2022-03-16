@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import Screen from './Screen.jsx';
 import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
-import timeRemaining from './logic.js';
+import countdown from './logic.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      time: 1,
-      setTime: 500,
+      timeRemaining: 1,
+      timeSetpoint: 500,
       timeStart: 144,
       days: 0,
       hours: 1,
@@ -23,13 +23,13 @@ class App extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      this.setState({ time: timeRemaining() });
+      this.setState({ timeRemaining: countdown(this.state.timeStart, 1) }); //countdown(timeStart, timeSetpoint)
     }, 1000);
   }
 
   handleClick(click, days, hours, minutes, seconds) {
     if (click) {
-      this.setState({ time: days });
+      this.setState({ timeSetpoint: days, timeStart: new Date().getTime() });
     }
   }
 
@@ -43,7 +43,7 @@ class App extends Component {
       <div>
         <h1>Meow</h1>
         <div>
-          <Screen time={this.state.time} />
+          <Screen time={this.state.timeRemaining} />
         </div>
         <div>
           <Input

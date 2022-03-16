@@ -1,8 +1,8 @@
 const countDownDate = new Date('Mar 16, 2022 16:37:52').getTime();
 
-function timeRemaining() {
+function countdown(timeStart, timeSetpoint) {
   const timeNow = new Date().getTime();
-  return countDownDate - timeNow;
+  return timeStart - timeSetpoint - timeNow;
 }
 
-export default timeRemaining;
+export default countdown;
