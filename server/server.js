@@ -1,32 +1,29 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser');
 
-const cookieController = require('./controllers/cookieController');
+// const cookieController = require('./controllers/cookieController');
 
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true })); // parses request body into JSON
-app.use(cookieParser()); // parses cookies from JSON into object
+// app.use(bodyParser.urlencoded({ extended: true })); // parses request body into JSON
+// app.use(cookieParser()); // parses cookies from JSON into object
 
-// converts the buffer data into readable data
-app.use(express.json());
+app.use(express.json()); // converts the buffer data into readable data
 
-// handle requests for static files
-app.use(express.static('client'));
+app.use(express.static('client')); // handle requests for static files
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-app.post('/set', cookieController.setCookie, (req, res) => {
-  res.redirect('/');
-});
+// app.post('/set', cookieController.setCookie, (req, res) => { // post to /set to handle cookie data
+//   res.redirect('/');
+// });
 
-// start server
-app.listen(PORT, () => {
+app.listen(PORT, () => { // start server
   console.log(`Server listening on port: ${PORT}`);
 });
 

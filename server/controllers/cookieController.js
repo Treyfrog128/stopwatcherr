@@ -2,8 +2,6 @@ const path = require('path');
 
 const cookieController = {};
 
-
-
 cookieController.setCookie = (req, res, next) => {
   res.cookie('days', req.body.days);
   res.cookie('hours', req.body.hours);

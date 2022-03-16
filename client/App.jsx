@@ -5,14 +5,15 @@ import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
 import { countdown } from './logic.js';
 import { timeSetpointCalc } from './logic.js';
+import { getCookie } from './logic.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       timeRemaining: 1,
-      timeSetpoint: 500,
-      timeStart: 144,
+      timeSetpoint: Number(getCookie("timeSetpoint")),
+      timeStart: Number(getCookie("timeStart")),
       days: 0,
       hours: 2,
       minutes: 1,
@@ -22,18 +23,31 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    console.log(typeof getCookie("timeStart"));
+    console.log(getCookie("timeSetpoint"));
+    if (getCookie("timeStart") && getCookie("timeSetpoint")) {
+      this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
+      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); 
+    }
+  }
+
+  // the countdown function updates the timeRemaining every 1s based on timeStart and timeSetpoint
   componentDidUpdate() {
     setInterval(() => {
       this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
     }, 1000);
   }
 
+  // when start button is clicked, this function calculates
+  // the timeSetpoint and timeStart based on the state d,h,m,s
   handleClick(click, days, hours, minutes, seconds) {
     if (click) {
       this.setState({ timeSetpoint: timeSetpointCalc(this.state.days, this.state.hours, this.state.minutes, this.state.seconds), timeStart: new Date().getTime() });
     }
   }
 
+  // this function updates the state values for each d,h,m,s based on what is in their input field
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
