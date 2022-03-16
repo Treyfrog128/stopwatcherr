@@ -18,4 +18,3 @@ export function timeCalc(time) {
   const seconds = Math.floor((time % (1000 * 60)) / (1000)).toString().padStart(2, '0');
   return { days, hours, minutes, seconds };
 }
-console.log(timeCalc(356499326))

@@ -14,7 +14,7 @@ class App extends Component {
       timeSetpoint: 500,
       timeStart: 144,
       days: 0,
-      hours: 0,
+      hours: 2,
       minutes: 1,
       seconds: 0,
     };
@@ -22,7 +22,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     setInterval(() => {
       this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
     }, 1000);
