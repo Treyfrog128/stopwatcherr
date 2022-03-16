@@ -24,19 +24,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(typeof getCookie("timeStart"));
-    console.log(getCookie("timeSetpoint"));
-    if (getCookie("timeStart") && getCookie("timeSetpoint")) {
-      this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
-      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); 
-    }
+    // if (getCookie("timeStart") && getCookie("timeSetpoint")) {
+    //   this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
+    //   this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); 
+    // }
+    setInterval(() => {
+      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
+    }, 1000);
   }
 
   // the countdown function updates the timeRemaining every 1s based on timeStart and timeSetpoint
   componentDidUpdate() {
-    setInterval(() => {
-      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
-    }, 1000);
+
   }
 
   // when start button is clicked, this function calculates

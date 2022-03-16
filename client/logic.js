@@ -25,6 +25,7 @@ export function timeCalc(time) {
   return { days, hours, minutes, seconds };
 }
 
+// function that gets cookie value based on name
 export function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
