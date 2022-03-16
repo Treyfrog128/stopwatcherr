@@ -4,6 +4,7 @@ import Screen from './Screen.jsx';
 import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
 import countdown from './logic.js';
+import { timeSetpointCalc } from './logic.js';
 
 class App extends Component {
   constructor() {
@@ -13,8 +14,8 @@ class App extends Component {
       timeSetpoint: 500,
       timeStart: 144,
       days: 0,
-      hours: 1,
-      minutes: 0,
+      hours: 0,
+      minutes: 1,
       seconds: 0,
     };
     this.handleClick = this.handleClick.bind(this);
@@ -23,18 +24,18 @@ class App extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      this.setState({ timeRemaining: countdown(this.state.timeStart, 1) }); //countdown(timeStart, timeSetpoint)
+      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
     }, 1000);
   }
 
   handleClick(click, days, hours, minutes, seconds) {
     if (click) {
-      this.setState({ timeSetpoint: days, timeStart: new Date().getTime() });
+      this.setState({ timeSetpoint: timeSetpointCalc(this.state.days, this.state.hours, this.state.minutes, this.state.seconds), timeStart: new Date().getTime() });
     }
   }
 
   handleChange(event) {
-    this.setState({ days: event.target.value });
+    this.setState({ days: event.target.value, hours: event.target.value, minutes: event.target.value, seconds: event.target.value, });
   }
   // DO NOT FORGET TO BIND FUNCTION TO THIS KEYWORD
 
@@ -51,7 +52,7 @@ class App extends Component {
             hours={this.state.hours}
             minutes={this.state.minutes}
             seconds={this.state.seconds}
-            onChange={this.handleChange}
+            handleChange={this.handleChange}
           />
         </div>
         <div>
