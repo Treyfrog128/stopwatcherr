@@ -4,7 +4,7 @@ class Buttons extends Component {
   render() {
     return (
       <div>
-        buttons
+        <button onClick = {() => {this.props.click(true, this.props.days)}}>Start</button>
       </div>
     );
   }
