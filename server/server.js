@@ -1,10 +1,15 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const cookieController = require('./controllers/cookieController');
 
 const app = express();
 const PORT = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true })); // parses request body into JSON
+app.use(cookieParser()); // parses cookies from JSON into object
 
 // converts the buffer data into readable data
 app.use(express.json());
@@ -17,7 +22,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/set', cookieController.setCookie, (req, res) => {
-  // what should happen here on successful log in?
   res.redirect('/');
 });
 
