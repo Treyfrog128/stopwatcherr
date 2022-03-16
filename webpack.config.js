@@ -26,4 +26,14 @@ module.exports = {
       template: path.join(__dirname, 'index.html'),
     }),
   ],
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'build'),
+      publicPath: '/build', // where to mock up the bundle file
+    },
+    // compress: true,
+    proxy: {
+      '/set': 'http://localhost:3000',
+    },
+  },
 };

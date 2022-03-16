@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const cookieController = require('./controllers/cookieController');
+
 const app = express();
 const PORT = 3000;
 
@@ -12,6 +14,11 @@ app.use(express.static('client'));
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'index.html'));
+});
+
+app.post('/set', cookieController.setCookie, (req, res) => {
+  // what should happen here on successful log in?
+  res.redirect('/');
 });
 
 // start server
