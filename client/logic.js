@@ -1,6 +1,6 @@
 const countDownDate = new Date('Mar 16, 2022 16:37:52').getTime();
 
-function countdown(timeStart, timeSetpoint) {
+export function countdown(timeStart, timeSetpoint) {
   const timeNow = new Date().getTime();
   return timeStart + timeSetpoint - timeNow;
 }
@@ -12,5 +12,3 @@ export function timeSetpointCalc(days, hours, minutes, seconds) {
   const calcSeconds = seconds * 1000;
   return calcDays + calcHours + calcMinutes + calcSeconds;
 }
-
-export default countdown;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Screen from './Screen.jsx';
 import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
-import countdown from './logic.js';
+import { countdown } from './logic.js';
 import { timeSetpointCalc } from './logic.js';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   handleChange(event) {
-    this.setState({ days: event.target.value, hours: event.target.value, minutes: event.target.value, seconds: event.target.value, });
+    this.setState({ [event.target.name]: event.target.value });
   }
   // DO NOT FORGET TO BIND FUNCTION TO THIS KEYWORD
 
