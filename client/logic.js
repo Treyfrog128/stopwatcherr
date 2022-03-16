@@ -1,5 +1,3 @@
-const countDownDate = new Date('Mar 16, 2022 16:37:52').getTime();
-
 export function countdown(timeStart, timeSetpoint) {
   const timeNow = new Date().getTime();
   return timeStart + timeSetpoint - timeNow;
@@ -12,3 +10,12 @@ export function timeSetpointCalc(days, hours, minutes, seconds) {
   const calcSeconds = seconds * 1000;
   return calcDays + calcHours + calcMinutes + calcSeconds;
 }
+
+export function timeCalc(time) {
+  const days = Math.floor(time / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((time % (1000 * 60)) / (1000));
+  return { days, hours, minutes, seconds };
+}
+console.log(timeCalc(356499326))

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
+import { timeCalc } from './logic.js';
 
-class Screen extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.time}
-      </div>
-    );
-  }
-}
+const Screen = function ({ time }) {
+  return (
+    <div>
+      {time}
+    </div>
+  );
+};
 
 export default Screen;

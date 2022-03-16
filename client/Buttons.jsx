@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-class Buttons extends Component {
-  render() {
-    return (
-      <div>
-        <button onClick = {() => {this.props.click(true, this.props.days, this.props.hours, this.props.minutes, this.props.seconds)}}>Start</button>
-      </div>
-    );
-  }
-}
+const Buttons = function ({ days, hours, minutes, seconds, click }) {
+  return (
+    <div>
+      <button type="button" onClick={() => { click(true, days, hours, minutes, seconds); }}>Start</button>
+    </div>
+  );
+};
 
 export default Buttons;

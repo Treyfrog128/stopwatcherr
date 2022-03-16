@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 
-class Input extends Component {
-  render() {
-    return (
-      <div>
-        <input type="number" name='days' value={this.props.days} onChange={this.props.handleChange} />
-        <input type="number" name='hours' value={this.props.hours} onChange={this.props.handleChange} />
-        <input type="number" name='minutes' value={this.props.minutes} onChange={this.props.handleChange} />
-        <input type="number" name='seconds' value={this.props.seconds} onChange={this.props.handleChange} />
-      </div>
-    );
-  }
-}
+const Input = function ({ days, hours, minutes, seconds, handleChange }) {
+  return (
+    <div>
+      <input type="number" name="days" value={days} onChange={handleChange} />
+      <input type="number" name="hours" value={hours} onChange={handleChange} />
+      <input type="number" name="minutes" value={minutes} onChange={handleChange} />
+      <input type="number" name="seconds" value={seconds} onChange={handleChange} />
+    </div>
+  );
+};
 
 export default Input;
