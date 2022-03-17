@@ -13,11 +13,19 @@ import { getCookie } from './logic.js';
 
 class App extends Component {
   constructor() {
+    let timeSetpoint = 0;
+    let timeStart = 0;
+    let timeRemaining = 1;
+    if (getCookie("timeStart") && getCookie("timeSetpoint")) {
+      timeStart = Number(getCookie("timeStart"));
+      timeSetpoint = Number(getCookie("timeSetpoint"));
+      timeRemaining = countdown(timeStart, timeSetpoint);
+    }
     super();
     this.state = {
-      timeRemaining: 1,
-      timeSetpoint: 0,
-      timeStart: 0,
+      timeRemaining,
+      timeSetpoint,
+      timeStart,
       timeDone: false,
       days: 0,
       hours: 0,
