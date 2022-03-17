@@ -12,8 +12,8 @@ class App extends Component {
     super();
     this.state = {
       timeRemaining: 1,
-      timeSetpoint: Number(getCookie("timeSetpoint")),
-      timeStart: Number(getCookie("timeStart")),
+      timeSetpoint: 0,
+      timeStart: 0,
       days: 0,
       hours: 2,
       minutes: 1,
@@ -24,18 +24,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // if (getCookie("timeStart") && getCookie("timeSetpoint")) {
-    //   this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
-    //   this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); 
-    // }
+    if (getCookie("timeStart") && getCookie("timeSetpoint")) {
+      this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
+    }
     setInterval(() => {
-      this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) }); //countdown(timeStart, timeSetpoint)
+      if (this.state.timeSetpoint !== 0 && this.state.timeStart !== 0) {
+        this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) });
+      }
     }, 1000);
   }
 
   // the countdown function updates the timeRemaining every 1s based on timeStart and timeSetpoint
   componentDidUpdate() {
-
   }
 
   // when start button is clicked, this function calculates
