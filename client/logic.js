@@ -1,10 +1,26 @@
-// main looping function that updates remaining time
+// main looping function that updates timeRemaining
 export function countdown(timeStart, timeSetpoint) {
   const timeNow = new Date().getTime();
   const daysToExpire = 'Tue, 19 Jan 2038 04:14:07 GMT';
+  const timeRemaining = timeStart + timeSetpoint - timeNow;
   document.cookie = 'timeStart' + '=' + timeStart + '; expires=' + daysToExpire;
   document.cookie = 'timeSetpoint' + '=' + timeSetpoint + '; expires=' + daysToExpire;
-  return timeStart + timeSetpoint - timeNow;
+  if (timeRemaining < 0) {
+    return 0;
+  }
+  return timeRemaining;
+}
+
+// lets the celebrate to to start confetti
+export function doneFlag() {
+  let primed = false;
+  return function inner(timeRemaining) {
+    if (timeRemaining > 1) primed = true;
+    if (primed && timeRemaining < 1) {
+      return true;
+    }
+    return false;
+  };
 }
 
 // takes in d,h,m,s and converts to ms value for timeSetpoint
@@ -30,4 +46,10 @@ export function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// clears input field on page load to show placeholder text
+export function placeholder(input) {
+  if (input === 0) return '';
+  return input;
 }

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 // import { render } from 'react-dom';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 import Screen from './Screen.jsx';
 import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
+import Celebrate from './Celebrate.jsx';
 import { countdown } from './logic.js';
+import { doneFlag } from './logic.js';
 import { timeSetpointCalc } from './logic.js';
 import { getCookie } from './logic.js';
 
@@ -14,9 +18,10 @@ class App extends Component {
       timeRemaining: 1,
       timeSetpoint: 0,
       timeStart: 0,
+      timeDone: false,
       days: 0,
-      hours: 2,
-      minutes: 1,
+      hours: 0,
+      minutes: 0,
       seconds: 0,
     };
     this.handleClick = this.handleClick.bind(this);
@@ -27,9 +32,13 @@ class App extends Component {
     if (getCookie("timeStart") && getCookie("timeSetpoint")) {
       this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
     }
+    const myFunc = doneFlag();
     setInterval(() => {
       if (this.state.timeSetpoint !== 0 && this.state.timeStart !== 0) {
-        this.setState({ timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint) });
+        this.setState({
+          timeRemaining: countdown(this.state.timeStart, this.state.timeSetpoint),
+          timeDone: myFunc(this.state.timeRemaining),
+        });
       }
     }, 1000);
   }
@@ -55,27 +64,34 @@ class App extends Component {
   render() {
     return (
       <div id="main">
-        <h1>Stopwatcherr</h1>
-        <div>
-          <Screen time={this.state.timeRemaining} />
+        <div id="title">
+          <h1>Stopwatcherr</h1>
+        </div>
+        <div id="function">
+          <div>
+            <Screen time={this.state.timeRemaining} />
+          </div>
+          <div>
+            <Input
+              days={this.state.days}
+              hours={this.state.hours}
+              minutes={this.state.minutes}
+              seconds={this.state.seconds}
+              handleChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <Buttons
+              click={this.handleClick}
+              days={this.state.days}
+              hours={this.state.hours}
+              minutes={this.state.minutes}
+              seconds={this.state.seconds}
+            />
+          </div>
         </div>
         <div>
-          <Input
-            days={this.state.days}
-            hours={this.state.hours}
-            minutes={this.state.minutes}
-            seconds={this.state.seconds}
-            handleChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <Buttons
-            click={this.handleClick}
-            days={this.state.days}
-            hours={this.state.hours}
-            minutes={this.state.minutes}
-            seconds={this.state.seconds}
-          />
+          <Celebrate timeDone={this.state.timeDone} />
         </div>
       </div>
     );
