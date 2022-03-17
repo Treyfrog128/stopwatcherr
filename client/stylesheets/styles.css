@@ -33,6 +33,10 @@ h1 {
     box-shadow: 4px 0px rgba(0, 0, 0, 0.3), -4px 0px rgba(0, 0, 0, 0.3);
 }
 
+#screen-background {
+    
+}
+
 #screen {
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
@@ -53,6 +57,16 @@ input {
     height: 1.5em;
     color: #161616;
     text-align: center;
+    border-radius: 0.3em;
+    border-color: transparent;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 10px #4285f4;
 }
 
 button {
@@ -64,6 +78,11 @@ button {
     margin: 0.5em;
     padding: 0.1em 1em;
     border-radius: 0.3em;
+    border-width: 0.1em;
+}
+
+button:active {
+    transform: translateY(3px);
 }
 
 #overall {

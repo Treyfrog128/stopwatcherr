@@ -9,6 +9,7 @@ import { doneFlag } from './logic.js';
 import { timeSetpointCalc } from './logic.js';
 import { getCookie } from './logic.js';
 import stopwatchIcon from './svg/stopwatch-icon.svg';
+import beep from './sounds/casio_chime.mp3';
 
 class App extends Component {
   constructor() {
@@ -21,6 +22,7 @@ class App extends Component {
       timeRemaining = countdown(timeStart, timeSetpoint);
     }
     super();
+    this.sound = new Audio(beep);
     this.state = {
       timeRemaining,
       timeSetpoint,
@@ -52,6 +54,7 @@ class App extends Component {
 
   // the countdown function updates the timeRemaining every 1s based on timeStart and timeSetpoint
   componentDidUpdate() {
+    if (this.state.timeDone) this.sound.play();
   }
 
   // when start button is clicked, this function calculates
@@ -66,6 +69,7 @@ class App extends Component {
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
   // DO NOT FORGET TO BIND FUNCTION TO THIS KEYWORD
 
   render() {
@@ -80,7 +84,7 @@ class App extends Component {
               <h1>Stopwatcherr</h1>
             </div>
             <div id="function">
-              <div>
+              <div id="screen-background">
                 <Screen time={this.state.timeRemaining} />
               </div>
               <div>

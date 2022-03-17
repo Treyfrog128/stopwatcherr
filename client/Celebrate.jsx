@@ -5,6 +5,7 @@ import Confetti from 'react-confetti';
 export default function Celebrate({ timeDone }) {
   const { width, height } = useWindowSize();
   if (timeDone) {
+
     return (
       <Confetti
         width={width}
