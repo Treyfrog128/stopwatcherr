@@ -1,0 +1,14 @@
+body {
+    background-color: #f7f7f7;
+}
+h1 {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 900;
+    font-size: 4em;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -54,8 +54,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Meow</h1>
+      <div id="main">
+        <h1>Stopwatcherr</h1>
         <div>
           <Screen time={this.state.timeRemaining} />
         </div>
