@@ -102,10 +102,10 @@ class App extends Component {
                 />
               </div>
             </div>
-            <div>
-              <Celebrate timeDone={this.state.timeDone} />
-            </div>
           </div>
+        </div>
+        <div>
+          <Celebrate timeDone={this.state.timeDone} />
         </div>
       </div>
     );

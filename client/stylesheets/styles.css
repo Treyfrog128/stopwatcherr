@@ -1,13 +1,14 @@
 body {
-    background-color: rgb(247, 247, 247);
+    background-color: #ff5722;
     margin: 0;
 }
 
 h1 {
-    font-family: 'Kanit', sans-serif;
-    font-weight: 900;
+    font-family: 'Alfa Slab One', sans-serif;
+    font-weight: 400;
     font-size: 4em;
-    color: #242424;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 12px rgb(0 0 0 / 0.8);
 }
 
 #main {
@@ -26,26 +27,43 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.185);
+    box-shadow: 4px 0px rgba(0, 0, 0, 0.3), -4px 0px rgba(0, 0, 0, 0.3);
 }
 
 #screen {
     font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
     font-size: 3em;
-    color: #0a5214;
+    color: #ffffff;
+    text-shadow: 2px 2px 1px rgb(0 0 0 / 0.8);
+}
+
+span {
+    font-size: 0.6em;
 }
 
 input {
     font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
     font-size: 1.5em;
     width: 6em;
     height: 1.5em;
-    color: #0a5214;
+    color: #161616;
     text-align: center;
 }
 
 button {
     font-family: 'Kanit', sans-serif;
     font-size: 2em;
+    color: #FFFFFF;
+    text-shadow: 2px 2px rgb(0 0 0 / 0.8);
+    background-color: #4285f4;
+    margin: 0.5em;
+    padding: 0.1em 1em;
+    border-radius: 0.3em;
 }
 
 #overall {
@@ -67,5 +85,7 @@ button {
 #icon {
     width: 400px;
     height: 400px;
+    filter: drop-shadow(2px 2px rgb(0 0 0 / 0.4));
 }
+
 

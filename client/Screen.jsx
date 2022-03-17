@@ -5,7 +5,7 @@ const Screen = function ({ time }) {
   const { days, hours, minutes, seconds } = timeCalc(time);
   return (
     <div>
-      <div id="screen">{days}d {hours}h {minutes}m {seconds}s</div>
+      <div id="screen">{days}<span>d</span> {hours}<span>h</span> {minutes}<span>m</span> {seconds}<span>s</span></div>
     </div>
   );
 };
