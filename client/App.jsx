@@ -70,38 +70,42 @@ class App extends Component {
 
   render() {
     return (
-      <div id="main">
-        <div id="icon">
-          <img src={stopwatchIcon} alt="Stopwatch Icon" />
+      <div id="overall">
+        <div id="icon-container">
+          <img id="icon" src={stopwatchIcon} alt="Stopwatch Icon" />
         </div>
-        <div id="title">
-          <h1>Stopwatcherr</h1>
-        </div>
-        <div id="function">
-          <div>
-            <Screen time={this.state.timeRemaining} />
+        <div id="lower">
+          <div id="main">
+            <div id="title">
+              <h1>Stopwatcherr</h1>
+            </div>
+            <div id="function">
+              <div>
+                <Screen time={this.state.timeRemaining} />
+              </div>
+              <div>
+                <Input
+                  days={this.state.days}
+                  hours={this.state.hours}
+                  minutes={this.state.minutes}
+                  seconds={this.state.seconds}
+                  handleChange={this.handleChange}
+                />
+              </div>
+              <div>
+                <Buttons
+                  click={this.handleClick}
+                  days={this.state.days}
+                  hours={this.state.hours}
+                  minutes={this.state.minutes}
+                  seconds={this.state.seconds}
+                />
+              </div>
+            </div>
+            <div>
+              <Celebrate timeDone={this.state.timeDone} />
+            </div>
           </div>
-          <div>
-            <Input
-              days={this.state.days}
-              hours={this.state.hours}
-              minutes={this.state.minutes}
-              seconds={this.state.seconds}
-              handleChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <Buttons
-              click={this.handleClick}
-              days={this.state.days}
-              hours={this.state.hours}
-              minutes={this.state.minutes}
-              seconds={this.state.seconds}
-            />
-          </div>
-        </div>
-        <div>
-          <Celebrate timeDone={this.state.timeDone} />
         </div>
       </div>
     );

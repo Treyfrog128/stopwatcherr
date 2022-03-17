@@ -47,3 +47,25 @@ button {
     font-family: 'Kanit', sans-serif;
     font-size: 2em;
 }
+
+#overall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#icon-container {
+    position: absolute;
+    top: 5%
+}
+
+#lower {
+    position: relative;
+    z-index: 9;
+}
+
+#icon {
+    width: 400px;
+    height: 400px;
+}
+
