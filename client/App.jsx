@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 // import { render } from 'react-dom';
-import useWindowSize from 'react-use/lib/useWindowSize';
-import Confetti from 'react-confetti';
 import Screen from './Screen.jsx';
 import Buttons from './Buttons.jsx';
 import Input from './Input.jsx';
@@ -10,6 +8,7 @@ import { countdown } from './logic.js';
 import { doneFlag } from './logic.js';
 import { timeSetpointCalc } from './logic.js';
 import { getCookie } from './logic.js';
+import stopwatchIcon from './svg/stopwatch-icon.svg';
 
 class App extends Component {
   constructor() {
@@ -40,7 +39,7 @@ class App extends Component {
     if (getCookie("timeStart") && getCookie("timeSetpoint")) {
       this.setState({ timeStart: Number(getCookie("timeStart")), timeSetpoint: Number(getCookie("timeSetpoint")) });
     }
-    const myFunc = doneFlag();
+    const myFunc = doneFlag(); // sets closure for celebrate trigger
     setInterval(() => {
       if (this.state.timeSetpoint !== 0 && this.state.timeStart !== 0) {
         this.setState({
@@ -72,6 +71,9 @@ class App extends Component {
   render() {
     return (
       <div id="main">
+        <div id="icon">
+          <img src={stopwatchIcon} alt="Stopwatch Icon" />
+        </div>
         <div id="title">
           <h1>Stopwatcherr</h1>
         </div>
